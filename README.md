@@ -32,23 +32,22 @@ This is my JavaScript notes.
 
   # Pure Function
   1. Same Input => Same Output
-    ```
+    
+```
     const add = (x, y) => x + y;
 
     add(2, 4); // 6
-
-    ```
+```
     
-
-
 # Why to use 'this'?
-    To access the information stored in object, we need to call object name.
-    For example user.sayHi(), we need to call user
-    At this point, we could also use this.sayHi(). Here this refers to user
+To access the information stored in object, we need to call object name.
+For example user.sayHi(), we need to call user
+At this point, we could also use this.sayHi(). Here this refers to user
 
-    But why we use 'this' instead of direct name of object?
-    Let see another example
-    ```
+But why we use 'this' instead of direct name of object?
+Let see another example
+
+```
         let user = {
         name: "John",
         age: 30,
@@ -64,12 +63,12 @@ This is my JavaScript notes.
 
         admin.sayHi(); // Whoops! inside sayHi(), the old name is used! error!
 
-    ```
+```
     Explanation: Here user is copied to admin object and calling admin method, it 
                   will access wrong object i.e user
   
     * return the object itself from every call
-    ```
+```
         let ladder = {
             step: 0,
             up() {
@@ -87,10 +86,10 @@ This is my JavaScript notes.
         ladder.up();
         ladder.down();
         ladder.showStep(); // 1
-    ```
+```
     To call ladder.up().up().down().showStep(); // error
 
-    ```
+```
     let ladder = {
         step: 0,
         up() {
@@ -109,13 +108,12 @@ This is my JavaScript notes.
 
         ladder.up().up().down().up().down().showStep(); // 1
 
-    ```
+```
 
 # Global object in JavaScript
-In a browser it is window and for node.js it is global
-Recently, it has been globalThis to support for all environment
-
-Generally global variables are discouraged. There should be few global variables.
+ - In a browser it is window and for node.js it is global
+ - Recently, it has been globalThis to support for all environment
+ - Generally global variables are discouraged. There should be few global variables.
 
 
 # JavaScript Execution on Browser
@@ -131,7 +129,7 @@ Execution Context.
     callable as f(a,b,c) into callable as f(a)(b)(c).
     Currying doesn't call a function. It just transforms it.
 
-    ```
+```
     function curry(f) { // curry(f) does the currying transform
         return function(a) {
             return function(b) {
@@ -149,7 +147,7 @@ Execution Context.
 
     alert( carriedSum(1)(2) ); // 3
 
-    ```
+```
 
     Here sum function doesn't lose anything, it can be directly called too
 
@@ -158,7 +156,8 @@ Execution Context.
 
     Await makes JavaScript wait until that promise settles and returns its result
     Await cannot use in regular function
-    ```
+    
+```
     async function f() {
         let promise = new Promise((resolve, reject) => {
             setTimeout(() => resolve("done!"), 1000)
@@ -171,10 +170,11 @@ Execution Context.
 
     f();
 
-    ```
+```
 
     Converting .then/Catch into async/await
-    ```
+    
+```
     function loadJson(url) {
         return fetch(url)
             .then(response => {
@@ -188,10 +188,11 @@ Execution Context.
 
         loadJson('no-such-user.json') // (3)
         .catch(alert); // Error: 404
-    ```
+```
 
     Converted
-    ```
+    
+```
     async function loadJson(url) { // (1)
         let response = await fetch(url); // (2)
 
@@ -205,10 +206,10 @@ Execution Context.
 
         loadJson('no-such-user.json')
         .catch(alert); // Error: 404 (4)
-    ```
+```
 
     * Call async from non-async
-    ```
+```
         async function wait() {
             await new Promise(resolve => setTimeout(resolve, 1000));
             return 10;
@@ -219,9 +220,9 @@ Execution Context.
             // we need to call async wait() and wait to get 10
             // remember, we can't use "await"
         }
-    ```
+```
     Solution
-    ```
+```
         async function wait() {
             await new Promise(resolve => setTimeout(resolve, 1000));
             return 10;
@@ -233,7 +234,7 @@ Execution Context.
         }
 
         f();
-    ```
+```
 
 # Modules in JavaScript
 Module is just a file, a single script.
@@ -243,18 +244,18 @@ It has 2 directives
  To work on modules we need to declare module in script tag
   '<script type="module"></script>'       
   Then we can work as 
-  ```
+```
     <!doctype html>
     <script type="module">
         import {sayHi} from './say.js';
 
         document.body.innerHTML = sayHi('John');
     </script>
-  ```
+```
     Features
     - Modules always `use strict` mode by default. So top-level 'this' is undefined
     - old browsers don't support modules
     - Async works on inline scripts.
-    -To load external scripts from another origin (domain/protocol/port), CORS     headers are needed.
+    - To load external scripts from another origin (domain/protocol/port), CORS     headers are needed.
     - Duplicate external scripts are ignored.
     - Module code is executed only once. Exports are created once and shared between importers.

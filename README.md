@@ -172,7 +172,7 @@ Execution Context.
 
 ```
 
-    Converting .then/Catch into async/await
+   Converting .then/Catch into async/await
     
 ```
     function loadJson(url) {
@@ -190,7 +190,7 @@ Execution Context.
         .catch(alert); // Error: 404
 ```
 
-    Converted
+Converted :
     
 ```
     async function loadJson(url) { // (1)
@@ -207,8 +207,8 @@ Execution Context.
         loadJson('no-such-user.json')
         .catch(alert); // Error: 404 (4)
 ```
+* Call async from non-async
 
-    * Call async from non-async
 ```
         async function wait() {
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -221,7 +221,9 @@ Execution Context.
             // remember, we can't use "await"
         }
 ```
-    Solution
+
+Solution
+
 ```
         async function wait() {
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -239,11 +241,13 @@ Execution Context.
 # Modules in JavaScript
 Module is just a file, a single script.
 It has 2 directives
-    - export
-    - import
- To work on modules we need to declare module in script tag
-  '<script type="module"></script>'       
-  Then we can work as 
+- export
+- import
+To work on modules we need to declare module in script tag
+  "<script type="module"></script>"
+
+  Then we can work as
+
 ```
     <!doctype html>
     <script type="module">
